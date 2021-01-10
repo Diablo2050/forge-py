@@ -40,5 +40,9 @@ def create_db(name, user, password, server):
     time.sleep(10)
     return response.json()
 
-#create_site("site", "user")
-#create_db("db_name", "db_username", "db_pass")
+def list_sites(server):
+    sites = []
+    response = requests.get(f'{get_servers}/{server}/sites', auth=BearerAuth(tok), headers=headers).json()
+    for i in response['sites']:
+        sites.append(i['name'])
+    return sites

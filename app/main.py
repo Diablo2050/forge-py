@@ -3,9 +3,10 @@
 # import time
 # from pathlib import Path  # python3 only
 # from tok import BearerAuth
+#from app.forge_calls import list_sites
 from typing import Optional
 from fastapi import FastAPI
-from forge_calls import *
+from forge_calls import create_site, create_db, list_sites
 from generate_pass import *
 
 app = FastAPI()
@@ -19,3 +20,7 @@ def create_dev_site(domain: str, server_id: int):
     create_site(domain, user_name, server_id)
     create_db(db_name, db_username, db_password, server_id)
     return {'db-access': {'db': db_name, 'db_user': db_username, 'db_pass': db_password}}
+
+@app.get("/api/forge/list")
+def list_server_sits(server_id: int):
+    return list_sites(server_id)
