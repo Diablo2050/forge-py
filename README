@@ -1,2 +1,4 @@
 docker build -t fastapi/forge-api .
 docker run -p 5050:5050 --rm fastapi/forge-api
+
+Requires a .env file to store the FORGE_TOKEN.
