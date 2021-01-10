@@ -46,3 +46,11 @@ def list_sites(server):
     for i in response['sites']:
         sites.append(i['name'])
     return sites
+
+def list_server_ids():
+    servers = {}
+    response = requests.get(f'{get_servers}', auth=BearerAuth(tok), headers=headers).json()
+    for i in response['servers']:
+        #print(i['name'], i['id'])
+        servers.update({i['name']: i['id']})
+    return servers
