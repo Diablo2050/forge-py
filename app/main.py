@@ -19,7 +19,7 @@ def create_dev_site(domain: str, server_id: int):
     db_password = get_random_string(10)
     create_site(domain, user_name, server_id)
     create_db(db_name, db_username, db_password, server_id)
-    return {'db-access': {'db': db_name, 'db_user': db_username, 'db_pass': db_password}}
+    return {'access': {'db': db_name, 'db_user': db_username, 'db_pass': db_password, 'username': user_name}}
 
 @app.get("/api/forge/list_sites")
 def list_server_sits(server_id: int):
